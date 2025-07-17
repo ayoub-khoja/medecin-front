@@ -1,0 +1,124 @@
+/* ===== Background and container ===== */
+/* ===== Background and container ===== */
+body {
+  background-color: #002b44;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.mammographie-container {
+  width: 700px;
+  margin: 50px auto;
+  background: linear-gradient(to bottom, #e6f7ff, #ccf2ff);
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Header title ===== */
+.header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+/* ===== Sections ===== */
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #005580;
+}
+
+.content {
+  margin-bottom: 20px;
+}
+
+/* ===== Inputs ===== */
+.text-input,
+.content input[type="text"],
+.content input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid #0099cc;
+  font-size: 14px;
+  outline: none;
+  background-color: #e6f7ff;
+  color: #00334d;
+  font-weight: 500;
+}
+
+.text-input:focus {
+  border-color: #00ccff;
+}
+
+/* ===== Checkbox and Radio options ===== */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.checkbox-label,
+.radio-label {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #00ccff;
+  color: #005580;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkbox-label:hover,
+.radio-label:hover {
+  background-color: #d1f3ff;
+}
+
+.checkbox-label input,
+.radio-label input {
+  margin-right: 8px;
+}
+
+/* ===== Dynamic section block style ===== */
+.dynamic-section {
+  border: 1px dashed #00ccff;
+  padding: 15px;
+  border-radius: 16px;
+  background-color: #e6faff;
+  margin-top: 10px;
+}
+
+/* ===== Submit button style ===== */
+.next-button {
+  width: 100%;
+  background-color: #0099cc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.next-button:hover {
+  background-color: #007aa3;
+}

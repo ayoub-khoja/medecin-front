@@ -1,0 +1,168 @@
+/* LoginForm.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+html, body {
+  overflow-x: hidden; /* ✅ empêche tout scroll horizontal */
+}
+
+.login-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+  position: relative;
+}
+
+.login-image-section {
+  width: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+}
+
+.login-image {
+  width: 100%;
+  max-width: 100%;
+  height: 720px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.logos-container {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 430px;
+}
+
+.login-logo,
+.drapeau-logo {
+  width: 150px;
+  height: auto;
+}
+
+.login-form-section {
+  width: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.login-form {
+  width: 90%;
+  max-width: 480px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 380px;
+}
+
+.login-title1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 200px;
+  white-space: nowrap;
+  margin-left: 85px;
+  color: #333;
+}
+
+.input-field {
+  width: 80%;              /* ✅ même largeur que le bouton */
+  padding: 14px 18px;
+  margin-bottom: 1.3rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  display: block;          /* ✅ pour centrer avec margin auto */
+  margin: 0 auto 1.3rem;   /* ✅ centre horizontalement */
+}
+
+.input-field:focus {
+  border-color: #40e0d0;
+  outline: none;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  width: 80%;             /* ✅ aligne avec la largeur des inputs et bouton */
+  margin: 0 auto 1.5rem;  /* ✅ centre horizontalement */
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.forgot-password {
+  color: #40e0d0;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  width: 80%;             /* ✅ même largeur que les inputs */
+  background-color: #40e0d0;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #40e0d0;
+}
+
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-icons a {
+  font-size: 1.2rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #40e0d0;
+}

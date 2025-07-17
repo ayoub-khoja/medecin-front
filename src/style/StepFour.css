@@ -1,0 +1,120 @@
+/* ===== StepFour Container ===== */
+.form-four-container {
+  width: 560px;
+  background: linear-gradient(to bottom, #e6f7ff, #ccf2ff);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  margin: 40px auto;
+}
+
+/* ===== Title ===== */
+.form-four-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  background-color: #007aa3;
+  padding: 14px;
+  border-radius: 20px 20px 0 0;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+/* ===== Conclusion IA block ===== */
+.conclusion-ia {
+  background-color: #e6faff;
+  border: 2px dashed #00ccff;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.conclusion-ia h3 {
+  color: #003366;
+  font-size: 18px;
+}
+
+/* ===== ConduiteSection Container ===== */
+.conduite-section-container {
+  background-color: #e6faff;
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Conduite Title ===== */
+.conduite-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== Options (Radio buttons) ===== */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.option-item {
+  background: white;
+  border: 2px solid #00ccff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.option-item:hover {
+  background: #d9f3ff;
+}
+
+.option-item input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #00ccff;
+}
+
+.option-item label {
+  font-size: 16px;
+  color: #003366;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== Button Submit ===== */
+.button-next-container {
+  margin-top: 30px;
+}
+
+.button-next {
+  width: 100%;
+  background-color: #0099cc;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-next:hover {
+  background-color: #007aa3;
+}
+.selected-conduite {
+  background-color: #e6faff;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #003366;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
