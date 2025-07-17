@@ -50,11 +50,8 @@ const FormOne: React.FC = () => {
     distributionMicrocalcifications,  // Récupérer la valeur
     handleDistributionChange,  // Récupérer la fonction
     formes, // Newly added
-    setFormes, // Newly added
     contours, // Newly added
-    setContours, // Newly added
     densites, // Newly added
-    setDensites, // Newly added
   } = useFormOneLogic(navigate);
 
   return (

@@ -16,12 +16,14 @@ html, body {
 .login-wrapper {
   display: flex;
   min-height: 100vh;
+  width: 1550px;
   background-color: #f7f7f7;
   position: relative;
 }
 
 .login-image-section {
-  width: 50%;
+  width: 820px;
+  height: 725px;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
@@ -37,13 +39,62 @@ html, body {
   border-radius: 12px;
 }
 
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative; /* ✅ Nécessaire pour placer le soulignement */
+
+  background: linear-gradient(270deg, #40e0d0, #ff6b6b, #ffd93d, #40e0d0);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 4s ease infinite;
+}
+
+/* ✅ Animation du dégradé en boucle */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ✅ Soulignement animé */
+.logo-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Distance sous le texte */
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, #40e0d0, #ff6b6b, #ffd93d);
+  animation: underlineExpand 1.5s ease forwards 0.5s; /* ✅ Apparition fluide */
+}
+
+@keyframes underlineExpand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 .logos-container {
   position: absolute;
   top: 30px;
   right: 30px;
   display: flex;
   align-items: center;
-  gap: 430px;
+  gap: 90px;
 }
 
 .login-logo,
@@ -57,23 +108,24 @@ html, body {
   background-color: #fff;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* ✅ Permet de jouer sur le margin-top */
   padding: 3rem;
 }
 
 .login-form {
-  width: 90%;
-  max-width: 480px;
+  width: 100%;            /* ✅ Plus large */
+  max-width: 580px;       /* ✅ Plus grand (520px → 580px) */
   border: 2px solid #ccc;
-  border-radius: 8px;
-  padding: 2rem;
+  border-radius: 10px;    /* ✅ Coins légèrement plus arrondis */
+  padding: 3rem;          /* ✅ Plus d’espace intérieur */
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 380px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* ✅ Ombre plus marquée */
+  height: 500px;          /* ✅ Plus haut (420px → 500px) */
+  margin-top: 132px;      /* ✅ Descend le formulaire vers le bas */
 }
 
 .login-title1 {
-  font-size: 1.8rem;
+  font-size: 2.1rem;
   font-weight: 600;
   margin-bottom: 2rem;
   text-align: center;
@@ -84,15 +136,45 @@ html, body {
 }
 
 .input-field {
-  width: 80%;              /* ✅ même largeur que le bouton */
+  width: 80%;
   padding: 14px 18px;
   margin-bottom: 1.3rem;
   border-radius: 8px;
+  height: 40px;
   border: 1px solid #ccc;
   font-size: 1rem;
   transition: border-color 0.3s ease;
-  display: block;          /* ✅ pour centrer avec margin auto */
-  margin: 0 auto 1.3rem;   /* ✅ centre horizontalement */
+  display: block;
+  margin: 0 auto 1.3rem;
+}
+
+.input-icon {
+  position: relative;
+  width: 85%;            /* ✅ Légèrement plus large */
+  margin: 0 auto 1.5rem; /* ✅ Un peu plus d'espacement */
+}
+
+.input-icon i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.4rem;      /* ✅ Icône agrandie (1rem → 1.4rem) */
+}
+
+.input-icon .input-field {
+  width: 100%;
+  padding: 16px 18px 16px 55px; /* ✅ Plus d'espace à gauche pour icône */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1.1rem;      /* ✅ Texte légèrement plus grand */
+  transition: border-color 0.3s ease;
+}
+
+.input-icon .input-field:focus {
+  border-color: #40e0d0;
+  outline: none;
 }
 
 .input-field:focus {
@@ -106,8 +188,8 @@ html, body {
   align-items: center;
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
-  width: 80%;             /* ✅ aligne avec la largeur des inputs et bouton */
-  margin: 0 auto 1.5rem;  /* ✅ centre horizontalement */
+  width: 80%;
+  margin: 0 auto 1.5rem;
 }
 
 .remember-me {
@@ -126,7 +208,7 @@ html, body {
 }
 
 .login-btn {
-  width: 80%;             /* ✅ même largeur que les inputs */
+  width: 80%;
   background-color: #40e0d0;
   color: white;
   border: none;

@@ -5,7 +5,8 @@ import axios from "axios";
 import ReturnIcon from "./icons/return";
 import { toast } from "sonner";
 import { useScanStore } from "../src/store/useScanStore"; // ✅ Correctement placé
-import "./style/AddPatient.css"
+import "./style/AddPatient.css";
+
 const AddPatientForm: React.FC = () => {
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState(""); 
@@ -40,25 +41,33 @@ const AddPatientForm: React.FC = () => {
 
       // Rediriger vers la suite du formulaire
       navigate("/formone");
-    } catch (error: any) {
-      toast.error(error.message || "❌ Erreur lors de l'enregistrement du patient !");
-      console.error("Erreur lors de l'enregistrement du patient:", error);
+    } catch (error: unknown) {
+      const err = error as Error;
+      toast.error(err.message || "❌ Erreur lors de l'enregistrement du patient !");
+      console.error("Erreur lors de l'enregistrement du patient:", err);
     }
   };
 
   return (
     <div className="patient-wrapper">
       <div className="patient-image-section">
-        <img src="/cl.jpg" alt="Patient visual" className="patient-image" />
+        <img src="/add-patient-image2.png" alt="Patient visual" className="patient-image" />
+      </div>
+
+      <div className="logos-container">
+        <img src="/logo.png" alt="Logo" className="login-logo" />
+        <span className="logo-text">Cancer IA</span> {/* ✅ Texte ajouté */}
+        <img src="/drapeau.avif" alt="Drapeau" className="drapeau-logo" />
       </div>
 
       <div className="patient-form-section">
-        <button className="patient-back-btn" onClick={() => navigate(-1)}>
-          <ReturnIcon />
-        </button>
-
         <form className="patient-form" onSubmit={handleSubmit}>
-          <h1 className="patient-title">Ajouter un nouveau patient</h1>
+          <div className="patient-title-container">
+            <button className="patient-back-btn" onClick={() => navigate(-1)}>
+              <ReturnIcon />
+            </button>
+            <h1 className="patient-title">Ajouter un nouveau patient</h1>
+          </div>
 
           <div className="form-group">
             <input
@@ -71,7 +80,7 @@ const AddPatientForm: React.FC = () => {
             />
           </div>
           <div className="form-group">
-          <input
+            <input
               type="text"
               className="patient-input"
               placeholder="Prénom"

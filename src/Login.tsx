@@ -37,48 +37,60 @@ const LoginForm: React.FC = () => {
       
       // Redirection vers la page home
       navigate("/home");
-    } catch (error: any) {
-      // ✅ Toast d'erreur
-      toast.error(error.message || "❌ Erreur de connexion !");
-    }
+    } catch (error: unknown) {
+  const err = error as Error;
+  // ✅ Toast d'erreur
+  toast.error(err.message || "❌ Erreur de connexion !");
+}
+
   };
 
   return (
     <div className="login-wrapper">
   <div className="login-image-section">
-    <img src="/mm.avif" alt="Login visual" className="login-image" />
+    <img src="/logo-login-principale.png" alt="Login visual" className="login-image" />
   </div>
+<div className="logos-container">
+  <img src="/logo.png" alt="Logo" className="login-logo" />
 
-  <div className="logos-container">
-    <img src="/logo.png" alt="Logo" className="login-logo" />
-    <img src="/drapeau.avif" alt="Drapeau" className="drapeau-logo" />
-  </div>
+  <span className="logo-text">Cancer IA</span> {/* ✅ Texte ajouté */}
+
+  <img src="/drapeau.avif" alt="Drapeau" className="drapeau-logo" />
+</div>
+
 
   <div className="login-form-section">
     <form className="login-form" onSubmit={handleSubmit}>
       <h1 className="login-title1">Bienvenue Docteur </h1>
 
       <div className="form-group">
-        <input
-          type="text"
-          className="input-field"
-          placeholder="Nom et prénom"
-          value={nom}
-          onChange={(e) => setNom(e.target.value)}
-          required
-        />
-      </div>
+  <div className="input-icon">
+    <i className="fas fa-user"></i> {/* ✅ Icône utilisateur */}
+    <input
+      type="text"
+      className="input-field"
+      placeholder="Nom et prénom"
+      value={nom}
+      onChange={(e) => setNom(e.target.value)}
+      required
+    />
+  </div>
+</div>
 
-      <div className="form-group">
-        <input
-          type="password"
-          className="input-field"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
+<div className="form-group">
+  <div className="input-icon">
+    <i className="fas fa-lock"></i> {/* ✅ Icône mot de passe */}
+    <input
+      type="password"
+      className="input-field"
+      placeholder="Password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+    />
+  </div>
+</div>
+
 
       <div className="form-options">
         <label className="remember-me">

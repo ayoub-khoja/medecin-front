@@ -1,5 +1,3 @@
-/* AddPatientForm.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
@@ -13,11 +11,12 @@
 .patient-wrapper {
   display: flex;
   min-height: 100vh;
+  width: 1550px;
   background-color: #f7f7f7;
 }
 
 .patient-image-section {
-  width: 50%;
+  width: 770px;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
@@ -44,14 +43,30 @@
 
 .patient-form {
   width: 100%;
-  max-width: 380px;
-  margin-left: -20px;
+  max-width: 600px;
+  margin-left: -50px;
+
+  /* ✅ Cadre ajouté */
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 132px; /* ✅ Descend le formulaire vers le bas */
+}
+
+/* ✅ Conteneur pour aligner le bouton et le titre */
+.patient-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2rem;
 }
 
 .patient-title {
   font-size: 1.8rem;
   font-weight: 600;
-  margin-bottom: 2rem;
   text-align: center;
   max-width: 300px;
   white-space: nowrap;
@@ -74,8 +89,8 @@
 }
 
 .patient-input.renseignements {
-  height: 250px; /* Hauteur spécifique pour le champ "renseignements cliniques" */
-  resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+  height: 150px;
+  resize: vertical;
 }
 
 .patient-options {
@@ -119,12 +134,9 @@
 }
 
 .patient-back-btn {
-  position: absolute;
-  top: 20px;
-  left: 760px;
   background: none;
   border: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #6366f1;
   cursor: pointer;
   font-weight: 500;
