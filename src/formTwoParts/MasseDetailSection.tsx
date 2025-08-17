@@ -51,13 +51,17 @@ const MasseDetailSection: React.FC<Props> = ({
   return (
     <div className="additional-section border rounded-lg mt-4 p-4">
       {/* Localisation */}
-      <label className="form-label">Localisation {index + 1}</label>
+      <label className="form-label">
+        Localisation {index + 1} 
+        <span className="text-red-500 ml-1">*</span>
+      </label>
       <input
         type="text"
         value={localisation}
         onChange={handleLocalisationChange}
         className="form-input"
         placeholder="Ex: Quadrant supérieur externe"
+        required
       />
 
       {/* Mesure */}
@@ -72,7 +76,10 @@ const MasseDetailSection: React.FC<Props> = ({
 
       {/* Forme */}
       <div className="form-radio-section mt-4">
-        <p className="form-label">Forme de la masse</p>
+        <p className="form-label">
+          Forme de la masse 
+          <span className="text-red-500 ml-1">*</span>
+        </p>
         {["ovale", "ronde", "irrégulière"].map((f) => (
           <label key={f} className="radio-label">
             <input
@@ -80,6 +87,7 @@ const MasseDetailSection: React.FC<Props> = ({
               name={`forme-${index}`}
               checked={forme === f}
               onChange={() => handleRadioChange("forme", f)}
+              required
             />
             {f}
           </label>
@@ -88,7 +96,10 @@ const MasseDetailSection: React.FC<Props> = ({
 
       {/* Contours */}
       <div className="form-radio-section mt-4">
-        <p className="form-label">Contours</p>
+        <p className="form-label">
+          Contours 
+          <span className="text-red-500 ml-1">*</span>
+        </p>
         {["circonscrits", "indistincts", "anguleux", "microlobulés", "spiculés"].map((c) => (
           <label key={c} className="radio-label">
             <input
@@ -96,6 +107,7 @@ const MasseDetailSection: React.FC<Props> = ({
               name={`contour-${index}`}
               checked={contour === c}
               onChange={() => handleRadioChange("contour", c)}
+              required
             />
             {c}
           </label>
@@ -104,7 +116,10 @@ const MasseDetailSection: React.FC<Props> = ({
 
       {/* Densité */}
       <div className="form-radio-section mt-4">
-        <p className="form-label">Densité</p>
+        <p className="form-label">
+          Densité 
+          <span className="text-red-500 ml-1">*</span>
+        </p>
         {["haute", "isoéchogène", "hypoéchogène", "anéchogène", "complexe"].map((d) => (
           <label key={d} className="radio-label">
             <input
@@ -112,6 +127,7 @@ const MasseDetailSection: React.FC<Props> = ({
               name={`densite-${index}`}
               checked={densite === d}
               onChange={() => handleRadioChange("densite", d)}
+              required
             />
             {d}
           </label>
@@ -133,8 +149,9 @@ const MasseDetailSection: React.FC<Props> = ({
           </label>
         ))}
       </div>
+      
       <div className="form-radio-section mt-4">
-        <p className="form-label">Comportement </p>
+        <p className="form-label">Comportement</p>
         {["neutre", "renforcement postérieur", "atténuation postérieure", "combiné"].map((comp) => (
           <label key={comp} className="radio-label">
             <input
@@ -163,6 +180,21 @@ const MasseDetailSection: React.FC<Props> = ({
           </label>
         ))}
       </div>
+
+      {/* Indicateur de validation */}
+      {localisation && forme && contour && densite ? (
+        <div className="mt-4 p-2 bg-green-100 border border-green-300 rounded">
+          <p className="text-green-700 text-sm">
+            ✅ Masse {index + 1} complète
+          </p>
+        </div>
+      ) : (
+        <div className="mt-4 p-2 bg-orange-100 border border-orange-300 rounded">
+          <p className="text-orange-700 text-sm">
+            ⚠️ Masse {index + 1} : Remplissez la localisation, forme, contours et densité
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -99,8 +99,15 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
 
   // NEXT
   const handleNextClick = async () => {
+    // ✅ VALIDATION : Vérifier que le nombre de masses est défini
+    if (!nombreMasse || nombreMasse === 0) {
+      toast.error("⚠️ Veuillez définir le nombre de masses échographiques");
+      return;
+    }
+
+    // ✅ CORRECTION : Toujours créer le tableau des masses échographiques
     const massesEchographie = localisations.map((localisation, index) => ({
-      localisation,
+      localisation: localisation || "",
       mesure: mesures[index] || "",
       forme: formes[index] || "",
       contours: contours[index] || "",
@@ -109,6 +116,22 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
       comportementDesFaisceauxUltrasons: comportements[index] || "",
       calcifications: calcifications[index] || "",
     }));
+
+    // ✅ VALIDATION : Vérifier que les données échographiques sont remplies
+    const hasEchographieData = massesEchographie.some(masse => 
+      masse.localisation && masse.forme && masse.contours && masse.densite
+    );
+
+    if (!hasEchographieData) {
+      toast.error("⚠️ Veuillez remplir au moins une masse échographique complète (localisation, forme, contours, densité)");
+      return;
+    }
+
+    // ✅ VALIDATION : Vérifier que l'échostructure mammaire est définie
+    if (!echostructureMammaire) {
+      toast.error("⚠️ Veuillez sélectionner l'échostructure mammaire");
+      return;
+    }
 
     const scanData = {
       densiteMammaire: formOneData.densiteMammaire || null,
@@ -134,8 +157,12 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
       conduiteATenir: null,
       client: { id: clientId || null },
       massesMammographie: formOneData.massesMammographie?.length ? formOneData.massesMammographie : null,
-      massesEchostructure: massesEchographie.length ? massesEchographie : null,
+      // ✅ CORRECTION : Toujours envoyer les masses échostructure
+      massesEchostructure: massesEchographie,
     };
+
+    console.log("📊 Données échographiques à envoyer:", massesEchographie);
+    console.log("📊 Scan data complet:", scanData);
 
     try {
       const response = await axios.post("http://localhost:9000/api/mammary-scan/add", scanData);

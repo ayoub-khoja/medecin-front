@@ -1,0 +1,144 @@
+.language-selector {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+}
+
+.language-selector__current {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+}
+
+.language-selector__current:hover {
+  border-color: #40e0d0;
+  box-shadow: 0 4px 8px rgba(64, 224, 208, 0.2);
+}
+
+.language-selector__flag {
+  font-size: 1.2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.language-selector__text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+}
+
+.language-selector__arrow {
+  font-size: 0.7rem;
+  color: #666;
+  transition: transform 0.2s ease;
+  margin-left: auto;
+}
+
+.language-selector__arrow.open {
+  transform: rotate(180deg);
+}
+
+.language-selector__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 4px;
+  overflow: hidden;
+  animation: dropdownSlide 0.2s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-selector__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.language-selector__option:last-child {
+  border-bottom: none;
+}
+
+.language-selector__option:hover {
+  background-color: #f8f9fa;
+}
+
+.language-selector__option.selected {
+  background-color: #e8f5f3;
+  color: #40e0d0;
+}
+
+.language-selector__option.selected .language-selector__text {
+  color: #40e0d0;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .language-selector__current {
+    padding: 6px 10px;
+    min-width: 100px;
+  }
+  
+  .language-selector__text {
+    font-size: 0.8rem;
+  }
+  
+  .language-selector__flag {
+    font-size: 1rem;
+  }
+}
+
+/* Fallback pour les drapeaux si les emojis ne s'affichent pas */
+.language-selector__flag::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 12px;
+  margin-right: 4px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.language-selector__flag[data-flag="fr"]::before {
+  background-image: linear-gradient(to right, #002395 0%, #002395 33.33%, #ffffff 33.33%, #ffffff 66.66%, #ed2939 66.66%, #ed2939 100%);
+}
+
+.language-selector__flag[data-flag="en"]::before {
+  background-image: linear-gradient(to right, #012169 0%, #012169 100%), linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+  background-blend-mode: multiply;
+}
+
+.language-selector__flag[data-flag="ar"]::before {
+  background-image: radial-gradient(circle at 30% 50%, #ffffff 0%, #ffffff 15%, transparent 15%), linear-gradient(to right, #ce1126 0%, #ce1126 100%);
+} 

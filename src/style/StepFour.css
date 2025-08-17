@@ -36,6 +36,42 @@
   font-size: 18px;
 }
 
+/* ===== Type ACR Display ===== */
+.acr-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 12px;
+  background-color: #f0f9ff;
+  border-radius: 8px;
+  border: 1px solid #00ccff;
+}
+
+.acr-count,
+.acr-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.acr-label {
+  font-size: 14px;
+  color: #005580;
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.acr-value {
+  font-size: 20px;
+  color: #003366;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 /* ===== ConduiteSection Container ===== */
 .conduite-section-container {
   background-color: #e6faff;

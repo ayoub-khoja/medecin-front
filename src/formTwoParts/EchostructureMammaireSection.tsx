@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-  echostructureMammaire: string; // Retirer le type null
+  echostructureMammaire: string;
   handleEchostructureChange: (value: string) => void;
 }
 
@@ -9,30 +9,37 @@ const EchostructureMammaireSection: React.FC<Props> = ({
   echostructureMammaire, 
   handleEchostructureChange 
 }) => {
-  const options = [
-    "graisseuse homogène",
-    "fibroglandulaire homogène",
-    "hétérogène",
-  ];
   return (
-    <div className="echostructure-section">
-      <p className="form-two-subtitle">Echostructure mammaire</p>
-      <div className="echostructure-options">
-        {options.map((option) => (
-          <label key={option} className="radio-label"> {/* Changé en radio-label */}
+    <div className="additional-section border rounded-lg mt-4 p-4">
+      <label className="form-label">
+        Échostructure mammaire 
+        <span className="text-red-500 ml-1">*</span>
+      </label>
+      <div className="form-radio-section mt-2">
+        {["graisseuse homogène", "fibroglandulaire homogène", "hétérogène"].map((option) => (
+          <label key={option} className="radio-label">
             <input
               type="radio"
-              name="echostructureMammaire"
+              name="echostructure"
               value={option}
               checked={echostructureMammaire === option}
-              onChange={() => handleEchostructureChange(option)}
-              className="radio-input"
+              onChange={(e) => handleEchostructureChange(e.target.value)}
+              required
             />
-            <span className="radio-custom"></span>
             {option}
           </label>
         ))}
       </div>
+      {!echostructureMammaire && (
+        <p className="text-red-600 text-sm mt-2">
+          ⚠️ Veuillez sélectionner l'échostructure mammaire
+        </p>
+      )}
+      {echostructureMammaire && (
+        <p className="text-green-600 text-sm mt-2">
+          ✅ Échostructure sélectionnée : {echostructureMammaire}
+        </p>
+      )}
     </div>
   );
 };

@@ -9,6 +9,7 @@ export const useStepFourLogic = (navigate: ReturnType<typeof useNavigate>) => {
 
   const [conclusionIA, setConclusionIA] = useState<string>("");
   const [conduiteATenir, setConduiteATenir] = useState<string>("");
+  const [acrType, setAcrType] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
   const steps = [
@@ -29,6 +30,9 @@ export const useStepFourLogic = (navigate: ReturnType<typeof useNavigate>) => {
           if (scan.conduiteATenir) {
             setConduiteATenir(scan.conduiteATenir);
           }
+          if (scan.acrType) {
+            setAcrType(scan.acrType);
+          }
         })
         .catch((error) => {
           console.error("Erreur récupération scan:", error);
@@ -47,6 +51,7 @@ export const useStepFourLogic = (navigate: ReturnType<typeof useNavigate>) => {
     steps,
     conclusionIA,
     conduiteATenir,
+    acrType,
     loading,
     handleSubmit,
   };

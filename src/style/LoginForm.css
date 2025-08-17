@@ -16,27 +16,33 @@ html, body {
 .login-wrapper {
   display: flex;
   min-height: 100vh;
-  width: 1550px;
-  background-color: #f7f7f7;
+  width: 100vw;
+    background-color: #ffffff;
   position: relative;
+  margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .login-image-section {
-  width: 820px;
-  height: 725px;
+  width: 50%;
+    min-height: 100vh;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0rem;
+  padding: 0;
+    margin: 0;
 }
 
 .login-image {
   width: 100%;
   max-width: 100%;
-  height: 720px;
+  height: 100vh;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .logo-text {
@@ -88,10 +94,17 @@ html, body {
   }
 }
 
-.logos-container {
+.language-selector-container {
   position: absolute;
   top: 30px;
   right: 30px;
+  z-index: 1001;
+  }
+  
+  .logos-container {
+    position: absolute;
+    top: 100px;
+    right: 160px;
   display: flex;
   align-items: center;
   gap: 90px;
@@ -114,14 +127,16 @@ html, body {
 
 .login-form {
   width: 100%;            /* ✅ Plus large */
-  max-width: 580px;       /* ✅ Plus grand (520px → 580px) */
+  max-width: 700px;
+    /* ✅ Plus grand (520px → 580px) */
   border: 2px solid #ccc;
   border-radius: 10px;    /* ✅ Coins légèrement plus arrondis */
   padding: 3rem;          /* ✅ Plus d’espace intérieur */
   background-color: #ffffff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* ✅ Ombre plus marquée */
   height: 500px;          /* ✅ Plus haut (420px → 500px) */
-  margin-top: 132px;      /* ✅ Descend le formulaire vers le bas */
+  margin-top: 250px;
+    /* ✅ Descend le formulaire encore plus bas */
 }
 
 .login-title1 {

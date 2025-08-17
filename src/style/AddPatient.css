@@ -8,15 +8,27 @@
   font-family: 'Inter', sans-serif;
 }
 
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: #f8f9fa;
+}
 .patient-wrapper {
   display: flex;
   min-height: 100vh;
-  width: 1550px;
+  width: 100vw;
   background-color: #f7f7f7;
+  margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .patient-image-section {
-  width: 770px;
+  width: 50%;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
@@ -25,8 +37,9 @@
 }
 
 .patient-image {
-  width: 1150px;
-  height: 720px;
+  width: 100%;
+    max-width: 100%;
+    height: 100vh;
   margin-top: 0px;
   object-fit: cover;
   border-radius: 12px;
@@ -39,12 +52,13 @@
   justify-content: center;
   align-items: center;
   padding: 3rem;
+  margin: 0;
 }
 
 .patient-form {
   width: 100%;
   max-width: 600px;
-  margin-left: -50px;
+  margin-left: 0;
 
   /* ✅ Cadre ajouté */
   border: 2px solid #ccc;
@@ -147,4 +161,60 @@
 
 .patient-back-btn:hover {
   text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .patient-wrapper {
+    flex-direction: column;
+  }
+
+  .patient-image-section {
+    width: 100%;
+    height: 300px;
+  }
+
+  .patient-image {
+    height: 300px;
+    border-radius: 0;
+  }
+
+  .patient-form-section {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .patient-form {
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .patient-form-section {
+    padding: 1.5rem;
+  }
+
+  .patient-form {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .patient-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .patient-form-section {
+    padding: 1rem;
+  }
+
+  .patient-form {
+    padding: 1rem;
+  }
+
+  .patient-title {
+    font-size: 1.3rem;
+  }
 }

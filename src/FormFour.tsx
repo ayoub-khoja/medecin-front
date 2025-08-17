@@ -10,7 +10,7 @@ import "./style/StepFour.css";
 
 const FormFour: React.FC = () => {
   const navigate = useNavigate();
-  const { steps, conclusionIA, conduiteATenir, loading, handleSubmit } = useStepFourLogic(navigate);
+  const { steps, conclusionIA, conduiteATenir, acrType, loading, handleSubmit } = useStepFourLogic(navigate);
 
   if (loading) {
     return (
@@ -27,8 +27,17 @@ const FormFour: React.FC = () => {
       <h2 className="form-four-title">Résultat IA</h2>
 
       <div className="conclusion-ia">
-        {conclusionIA && (
-          <h3>ACR IA : {conclusionIA}</h3>
+        {acrType && (
+          <div className="acr-info-row">
+            <div className="acr-count">
+              <span className="acr-label">ACR</span>
+              <span className="acr-value">4</span>
+            </div>
+            <div className="acr-type">
+              <span className="acr-label">Type ACR</span>
+              <span className="acr-value">{acrType}</span>
+            </div>
+          </div>
         )}
       </div>
 
