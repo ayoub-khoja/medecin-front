@@ -1,10 +1,15 @@
 import React from "react";
+import BreastSchema from "../components/BreastSchema";
 
 interface Props {
   massNumber: string;
   setMassNumber: (value: string) => void;
   localisations: string[];
+  distancesCentre: string[];
+  seins: ("gauche" | "droite")[];
   handleLocalisationChange: (index: number, value: string) => void;
+  handleDistanceCentreChange: (index: number, value: string) => void;
+  handleSeinChange: (index: number, value: "gauche" | "droite") => void;
   formes: string[];
   contours: string[];
   densites: string[];
@@ -17,7 +22,11 @@ const MassesSection: React.FC<Props> = ({
   massNumber,
   setMassNumber,
   localisations,
+  distancesCentre,
+  seins,
   handleLocalisationChange,
+  handleDistanceCentreChange,
+  handleSeinChange,
   formes,
   contours,
   densites,
@@ -45,15 +54,16 @@ const MassesSection: React.FC<Props> = ({
 
       {[...Array(Number(massNumber) || 0)].map((_, index) => (
         <div key={index} className="dynamic-section">
-          {/* Localisation */}
+          {/* Schéma mammaire avec localisation */}
           <div className="content">
             <p className="title">Localisation de la masse {index + 1}</p>
-            <input
-              type="text"
-              placeholder="Votre réponse"
-              value={localisations[index] || ""}
-              onChange={(e) => handleLocalisationChange(index, e.target.value)}
-              className="text-input"
+            <BreastSchema
+              localisation={localisations[index] || ""}
+              distanceCentre={distancesCentre[index] || ""}
+              sein={seins[index] || "gauche"}
+              onLocalisationChange={(value) => handleLocalisationChange(index, value)}
+              onDistanceCentreChange={(value) => handleDistanceCentreChange(index, value)}
+              onSeinChange={(value) => handleSeinChange(index, value)}
             />
           </div>
 

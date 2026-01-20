@@ -8,6 +8,8 @@ export const useFormOneLogic = (navigate: (path: string) => void) => {
   const [selected, setSelected] = useState<string[]>([]);
   const [massNumber, setMassNumber] = useState<string>("");
   const [localisations, setLocalisations] = useState<string[]>([]);
+  const [distancesCentre, setDistancesCentre] = useState<string[]>([]);
+  const [seins, setSeins] = useState<("gauche" | "droite")[]>([]);
   const [asymmetry, setAsymmetry] = useState<string>("");
   const [asymmetryDetails, setAsymmetryDetails] = useState<string[]>([]); // Track selected asymmetry details
   const [distortion, setDistortion] = useState<string>("");
@@ -34,6 +36,22 @@ export const useFormOneLogic = (navigate: (path: string) => void) => {
       const newLocalisations = [...prev];
       newLocalisations[index] = value;
       return newLocalisations;
+    });
+  };
+
+  const handleDistanceCentreChange = (index: number, value: string) => {
+    setDistancesCentre((prev) => {
+      const newDistances = [...prev];
+      newDistances[index] = value;
+      return newDistances;
+    });
+  };
+
+  const handleSeinChange = (index: number, value: "gauche" | "droite") => {
+    setSeins((prev) => {
+      const newSeins = [...prev];
+      newSeins[index] = value;
+      return newSeins;
     });
   };
   const handleAsymmetryChange = (value: string) => {
@@ -101,11 +119,13 @@ export const useFormOneLogic = (navigate: (path: string) => void) => {
       setMassNumber(value);
       const numberOfMasses = Number(value);
   
-      // Reset states for all new masses when number of masses changes
-      setLocalisations(new Array(numberOfMasses).fill(""));
-      setFormes(new Array(numberOfMasses).fill(""));
-      setContours(new Array(numberOfMasses).fill(""));
-      setDensites(new Array(numberOfMasses).fill(""));
+          // Reset states for all new masses when number of masses changes
+    setLocalisations(new Array(numberOfMasses).fill(""));
+    setDistancesCentre(new Array(numberOfMasses).fill(""));
+    setSeins(new Array(numberOfMasses).fill("gauche"));
+    setFormes(new Array(numberOfMasses).fill(""));
+    setContours(new Array(numberOfMasses).fill(""));
+    setDensites(new Array(numberOfMasses).fill(""));
     };
  
   const handleMassesDataChange = (index: number, type: "forme" | "contour" | "densite", value: string) => {
@@ -141,6 +161,8 @@ export const useFormOneLogic = (navigate: (path: string) => void) => {
   const handleNextClick = () => {
     const massesMammographie = localisations.map((localisation, index) => ({
       localisation,
+      distanceCentre: distancesCentre[index] || "",
+      sein: seins[index] || "gauche",
       forme: formes[index] || "",
       contours: contours[index] || "",
       densite: densites[index] || "",
@@ -169,7 +191,11 @@ export const useFormOneLogic = (navigate: (path: string) => void) => {
     massNumber,
     setMassNumber: handleMassNumberChange,
     localisations,
+    distancesCentre,
+    seins,
     handleLocalisationChange,
+    handleDistanceCentreChange,
+    handleSeinChange,
     formes,
     setFormes,
     contours,

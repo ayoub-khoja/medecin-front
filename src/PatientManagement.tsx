@@ -1,45 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PatientManagement.css';
 import { useAuth } from './hooks/useAuth';
 import { ROUTES } from './navigation/navigationConfig';
-
-interface Patient {
-  id: string;
-  nom: string;
-  prenom: string;
-  acr: string;
-  type: string;
-}
+import { getAllPatients, deleteScan, Patient } from './services/patientService';
+import { toast } from 'sonner';
+import ReturnIcon from './icons/return';
 
 const PatientManagement: React.FC = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPatients, setSelectedPatients] = useState<string[]>([]);
+  const [patients, setPatients] = useState<Patient[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  // Pagination
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage] = useState<number>(10);
 
-  // Données de démonstration des patients
-  const [patients] = useState<Patient[]>([
-    { id: '1', nom: 'Ayoub Ramez', prenom: 'Khouja', acr: '4', type: 'A' },
-    { id: '2', nom: 'Seif', prenom: 'Khouja', acr: '5', type: '-' },
-    { id: '3', nom: 'Dhia', prenom: 'Khouja', acr: '2', type: '-' },
-    { id: '4', nom: 'Yosri', prenom: 'Khouja', acr: '3', type: '-' },
-    { id: '5', nom: 'Dhia', prenom: 'Harchey', acr: '5', type: '-' },
-    { id: '6', nom: 'Ali', prenom: 'Ben Nejma', acr: '1', type: '-' },
-  ]);
+  // Charger les patients depuis le backend
+  useEffect(() => {
+    loadPatients();
+  }, []);
+
+  const loadPatients = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const patientsData = await getAllPatients();
+      setPatients(patientsData);
+    } catch (err) {
+      console.error('Erreur lors du chargement des patients:', err);
+      setError('Erreur lors du chargement des patients. Veuillez réessayer.');
+      toast.error('Erreur lors du chargement des patients ❌');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleNouveauPatient = () => {
     navigate(ROUTES.FORM_ONE);
   };
 
   const handleViewPatient = (patientId: string) => {
-    console.log('Voir le patient:', patientId);
-    // Navigation vers la page de détails du patient
+    const patient = patients.find(p => p.id === patientId);
+    if (patient && patient.scanId) {
+      // Navigation vers la page de détails avec le scanId
+      navigate(ROUTES.FORM_THREE, { state: { scanId: patient.scanId } });
+    } else {
+      toast.error('Impossible de trouver les détails du patient ❌');
+    }
   };
 
-  const handleDeletePatient = (patientId: string) => {
-    console.log('Supprimer le patient:', patientId);
-    // Logique de suppression du patient
+  const handleDeletePatient = async (patientId: string) => {
+    const patient = patients.find(p => p.id === patientId);
+    if (!patient || !patient.scanId) {
+      toast.error('Impossible de supprimer ce patient ❌');
+      return;
+    }
+
+    // Confirmation avant suppression
+    if (!window.confirm(`Êtes-vous sûr de vouloir supprimer le patient ${patient.nom} ${patient.prenom} ?`)) {
+      return;
+    }
+
+    try {
+      await deleteScan(patient.scanId);
+      toast.success('Patient supprimé avec succès ✅');
+      // Recharger la liste des patients
+      await loadPatients();
+      // Retirer de la sélection si sélectionné
+      setSelectedPatients(prev => prev.filter(id => id !== patientId));
+    } catch (err) {
+      console.error('Erreur lors de la suppression:', err);
+      toast.error('Erreur lors de la suppression du patient ❌');
+    }
   };
 
   const handleSelectPatient = (patientId: string) => {
@@ -50,17 +87,61 @@ const PatientManagement: React.FC = () => {
     );
   };
 
-  const handleSelectAll = () => {
-    if (selectedPatients.length === patients.length) {
-      setSelectedPatients([]);
-    } else {
-      setSelectedPatients(patients.map(p => p.id));
-    }
-  };
-
   const filteredPatients = patients.filter(patient =>
     `${patient.nom} ${patient.prenom}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Calculs de pagination
+  const totalPages = Math.ceil(filteredPatients.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPatients = filteredPatients.slice(startIndex, endIndex);
+
+  const handleSelectAll = () => {
+    const currentPagePatientIds = currentPatients.map(p => p.id);
+    const allCurrentSelected = currentPagePatientIds.every(id => selectedPatients.includes(id));
+    
+    if (allCurrentSelected) {
+      // Désélectionner tous les patients de la page actuelle
+      setSelectedPatients(prev => prev.filter(id => !currentPagePatientIds.includes(id)));
+    } else {
+      // Sélectionner tous les patients de la page actuelle
+      setSelectedPatients(prev => {
+        const newSelection = [...prev];
+        currentPagePatientIds.forEach(id => {
+          if (!newSelection.includes(id)) {
+            newSelection.push(id);
+          }
+        });
+        return newSelection;
+      });
+    }
+  };
+
+  // Réinitialiser la page quand la recherche change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
+  // Fonctions de pagination
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -88,6 +169,9 @@ const PatientManagement: React.FC = () => {
       {/* Bannière de gestion des patients */}
       <div className="pm-banner">
         <div className="banner-content">
+          <button className="banner-return-btn" onClick={() => navigate(ROUTES.DASHBOARD)}>
+            <ReturnIcon />
+          </button>
           <h2 className="banner-title">Gestion des patients</h2>
           <div className="banner-ribbon">🎗️</div>
         </div>
@@ -125,7 +209,7 @@ const PatientManagement: React.FC = () => {
               <div className="header-checkbox">
                 <input
                   type="checkbox"
-                  checked={selectedPatients.length === patients.length}
+                  checked={currentPatients.length > 0 && selectedPatients.length === currentPatients.length}
                   onChange={handleSelectAll}
                 />
               </div>
@@ -136,7 +220,26 @@ const PatientManagement: React.FC = () => {
             </div>
 
             <div className="table-body">
-              {filteredPatients.map((patient) => (
+              {loading ? (
+                <div className="loading-message">
+                  <i className="fas fa-spinner fa-spin"></i>
+                  Chargement des patients...
+                </div>
+              ) : error ? (
+                <div className="error-message">
+                  <i className="fas fa-exclamation-triangle"></i>
+                  {error}
+                  <button onClick={loadPatients} className="retry-btn">
+                    Réessayer
+                  </button>
+                </div>
+              ) : filteredPatients.length === 0 ? (
+                <div className="empty-message">
+                  <i className="fas fa-inbox"></i>
+                  Aucun patient trouvé
+                </div>
+              ) : (
+                currentPatients.map((patient) => (
                 <div key={patient.id} className="table-row">
                   <div className="row-checkbox">
                     <input
@@ -167,8 +270,68 @@ const PatientManagement: React.FC = () => {
                     </button>
                   </div>
                 </div>
-              ))}
+                ))
+              )}
             </div>
+
+            {/* Pagination */}
+            {!loading && !error && filteredPatients.length > 0 && totalPages > 1 && (
+              <div className="pagination-container">
+                <div className="pagination-info">
+                  Affichage {startIndex + 1}-{Math.min(endIndex, filteredPatients.length)} sur {filteredPatients.length} patients
+                </div>
+                <div className="pagination-controls">
+                  <button
+                    className="pagination-btn"
+                    onClick={handlePreviousPage}
+                    disabled={currentPage === 1}
+                  >
+                    <i className="fas fa-chevron-left"></i>
+                    Précédent
+                  </button>
+                  
+                  <div className="pagination-numbers">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                      // Afficher seulement quelques pages autour de la page actuelle
+                      if (
+                        page === 1 ||
+                        page === totalPages ||
+                        (page >= currentPage - 2 && page <= currentPage + 2)
+                      ) {
+                        return (
+                          <button
+                            key={page}
+                            className={`pagination-number ${currentPage === page ? 'active' : ''}`}
+                            onClick={() => handlePageChange(page)}
+                          >
+                            {page}
+                          </button>
+                        );
+                      } else if (
+                        page === currentPage - 3 ||
+                        page === currentPage + 3
+                      ) {
+                        return (
+                          <span key={page} className="pagination-ellipsis">
+                            ...
+                          </span>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                  
+                  <button
+                    className="pagination-btn"
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                  >
+                    Suivant
+                    <i className="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </main>

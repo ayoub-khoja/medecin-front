@@ -21,10 +21,22 @@ const FormFour: React.FC = () => {
   }
 
   return (
-    <div className="form-four-container">
-      <ReturnIcon onClick={() => navigate(-1)} />
-      <Stepper steps={steps} currentStep={3} />
-      <h2 className="form-four-title">Résultat IA</h2>
+    <div className="form-wrapper">
+      <div className="form-image-section">
+        <img 
+          src="/image-conclusion.png" 
+          alt="Medical illustration" 
+          className="form-side-image"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "/med.jpg";
+          }}
+        />
+      </div>
+      <div className="form-four-container">
+        <ReturnIcon onClick={() => navigate(-1)} />
+        <Stepper steps={steps} currentStep={3} />
+        <h2 className="form-four-title">Résultat IA</h2>
 
       <div className="conclusion-ia">
         {acrType && (
@@ -44,6 +56,7 @@ const FormFour: React.FC = () => {
       <ConduiteSection conduiteATenir={conduiteATenir} />
 
       <SubmitButton handleSubmit={handleSubmit} />
+      </div>
     </div>
   );
 };

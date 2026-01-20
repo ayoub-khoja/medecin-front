@@ -1,0 +1,312 @@
+.breast-schema-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+}
+
+/* Sélecteur de sein */
+.sein-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-select {
+  padding: 10px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  background: white;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Container des deux seins */
+.breasts-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.breast-schema-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.breast-schema-wrapper.active {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.breast-schema-wrapper:not(.active) {
+  filter: grayscale(0.3);
+}
+
+.breast-outline {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 3px solid #007bff;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.breast-left {
+  border-color: #007bff;
+}
+
+.breast-right {
+  border-color: #28a745;
+}
+
+.breast-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007bff;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.breast-right .breast-label {
+  background: #28a745;
+}
+
+/* Lignes d'horloge */
+.clock-line {
+  position: absolute;
+  background: #007bff;
+  border-radius: 2px;
+}
+
+.vertical-line-12 {
+  width: 2px;
+  height: 80px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vertical-line-6 {
+  width: 2px;
+  height: 80px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.horizontal-line-3 {
+  width: 80px;
+  height: 2px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.horizontal-line-9 {
+  width: 80px;
+  height: 2px;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Labels d'horloge */
+.clock-label {
+  position: absolute;
+  font-weight: bold;
+  color: #007bff;
+  font-size: 14px;
+  background: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #007bff;
+}
+
+.clock-12 {
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.clock-6 {
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.clock-3 {
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.clock-9 {
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Centre (mamelon) */
+.nipple-center {
+  width: 20px;
+  height: 20px;
+  background: #6c757d;
+  border-radius: 50%;
+  border: 2px solid #495057;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Indicateur de masse */
+.mass-indicator {
+  width: 16px;
+  height: 16px;
+  background: #dc3545;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.6);
+  animation: pulse 2s infinite;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Les positions des masses sont maintenant calculées dynamiquement en JavaScript */
+
+/* Ligne de distance */
+.distance-line {
+  pointer-events: none;
+  border-radius: 1px;
+}
+
+/* Champs de saisie */
+.localisation-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 14px;
+}
+
+.form-input {
+  padding: 10px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-input::placeholder {
+  color: #adb5bd;
+}
+
+.text-muted {
+  color: #6c757d;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Instructions */
+.instructions {
+  margin-top: 20px;
+  padding: 15px;
+  background: #e3f2fd;
+  border-radius: 8px;
+  border-left: 4px solid #2196f3;
+}
+
+.instructions-title {
+  margin: 0 0 10px 0;
+  color: #1976d2;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.instructions-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #424242;
+  font-size: 13px;
+}
+
+.instructions-list li {
+  margin-bottom: 5px;
+}
+
+.instructions-list strong {
+  color: #1976d2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .breast-outline {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .localisation-inputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .clock-line {
+    opacity: 0.8;
+  }
+  
+  .clock-label {
+    font-size: 12px;
+  }
+}

@@ -17,6 +17,8 @@ const FormTwo: React.FC = () => {
     steps,
     nombreMasse,
     localisations,
+    distancesCentre,
+    seins,
     mesures,
     formes,
     contours,
@@ -30,6 +32,8 @@ const FormTwo: React.FC = () => {
     casSpeciauxLocalisations,
     handleNombreMasseChange,
     handleLocalisationChange,
+    handleDistanceCentreChange,
+    handleSeinChange,
     handleMesureChange,
     handleMassesDataChange,
     handleEchostructureChange,
@@ -40,11 +44,23 @@ const FormTwo: React.FC = () => {
   } = useFormTwoLogic(navigate);
 
   return (
-    <div className="form-two-container">
-      <ReturnIcon onClick={() => navigate(-1)} />
-      <Stepper steps={steps} currentStep={1} />
+    <div className="form-wrapper">
+      <div className="form-image-section">
+        <img 
+          src="/med.jpg" 
+          alt="Medical illustration" 
+          className="form-side-image"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "/choix2.png";
+          }}
+        />
+      </div>
+      <div className="form-two-container">
+        <ReturnIcon onClick={() => navigate(-1)} />
+        <Stepper steps={steps} currentStep={1} />
 
-      <h2 className="form-two-title">ECHOGRAPHIE MAMMAIRE</h2>
+        <h2 className="form-two-title">ECHOGRAPHIE MAMMAIRE</h2>
 
       <EchostructureMammaireSection
         echostructureMammaire={echostructureMammaire || ""}
@@ -61,6 +77,8 @@ const FormTwo: React.FC = () => {
           key={index}
           index={index}
           localisation={localisations[index] || ""}
+          distanceCentre={distancesCentre[index] || ""}
+          sein={seins[index] || "gauche"}
           mesure={mesures[index] || ""}
           forme={formes[index] || ""}
           contour={contours[index] || ""}
@@ -69,6 +87,8 @@ const FormTwo: React.FC = () => {
           comportement={comportements[index] || ""}
           calcification={calcifications[index] || ""}
           onLocalisationChange={handleLocalisationChange}
+          onDistanceCentreChange={handleDistanceCentreChange}
+          onSeinChange={handleSeinChange}
           onMesureChange={handleMesureChange}
           onMassesDataChange={handleMassesDataChange}
         />
@@ -87,6 +107,7 @@ const FormTwo: React.FC = () => {
       />
 
       <NextButton handleNextClick={handleNextClick} />
+      </div>
     </div>
   );
 };

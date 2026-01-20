@@ -5,30 +5,54 @@ import LanguageSelector from "./components/LanguageSelector";
 import "./style/LoginForm.css";
 
 const LoginForm: React.FC = () => {
+  const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login, register } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      const result = await login(nom, password);
-      
-      if (result.success) {
-        // ✅ Toast de succès
-        toast.success("Connexion réussie !", {
-          icon: "🚀"
-        });
-        console.log("Utilisateur connecté :", result.data);
-      } else {
-        // ✅ Toast d'erreur
-        toast.error(result.error?.message || "❌ Erreur de connexion !");
+    if (isRegisterMode) {
+      // Mode inscription
+      try {
+        const result = await register(nom, prenom, password);
+        
+        if (result.success) {
+          toast.success("Compte créé avec succès !", {
+            icon: "✅"
+          });
+          // Basculer vers le mode connexion après inscription réussie
+          setIsRegisterMode(false);
+          setPrenom(""); // Réinitialiser le champ prénom
+        } else {
+          toast.error(result.error?.message || "❌ Erreur lors de la création du compte !");
+        }
+      } catch (error: unknown) {
+        const err = error as Error;
+        toast.error(err.message || "❌ Erreur lors de la création du compte !");
       }
-    } catch (error: unknown) {
-      const err = error as Error;
-      // ✅ Toast d'erreur
-      toast.error(err.message || "❌ Erreur de connexion !");
+    } else {
+      // Mode connexion
+      try {
+        const result = await login(nom, password);
+        
+        if (result.success) {
+          // ✅ Toast de succès
+          toast.success("Connexion réussie !", {
+            icon: "🚀"
+          });
+          console.log("Utilisateur connecté :", result.data);
+        } else {
+          // ✅ Toast d'erreur
+          toast.error(result.error?.message || "❌ Erreur de connexion !");
+        }
+      } catch (error: unknown) {
+        const err = error as Error;
+        // ✅ Toast d'erreur
+        toast.error(err.message || "❌ Erreur de connexion !");
+      }
     }
   };
 
@@ -55,7 +79,9 @@ const LoginForm: React.FC = () => {
 
       <div className="login-form-section">
         <form className="login-form" onSubmit={handleSubmit}>
-          <h1 className="login-title1">Bienvenue Docteur </h1>
+          <h1 className="login-title1">
+            {isRegisterMode ? "Créer un compte" : "Bienvenue Docteur"}
+          </h1>
 
           <div className="form-group">
             <div className="input-icon">
@@ -63,13 +89,29 @@ const LoginForm: React.FC = () => {
               <input
                 type="text"
                 className="input-field"
-                placeholder="Nom et prénom"
+                placeholder="Nom"
                 value={nom}
                 onChange={(e) => setNom(e.target.value)}
                 required
               />
             </div>
           </div>
+
+          {isRegisterMode && (
+            <div className="form-group">
+              <div className="input-icon">
+                <i className="fas fa-user-circle"></i> {/* ✅ Icône prénom */}
+                <input
+                  type="text"
+                  className="input-field"
+                  placeholder="Prénom"
+                  value={prenom}
+                  onChange={(e) => setPrenom(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+          )}
 
           <div className="form-group">
             <div className="input-icon">
@@ -85,19 +127,50 @@ const LoginForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="form-options">
-            <label className="remember-me">
-              <input type="checkbox" />
-              Remember me
-            </label>
-            <a href="#" className="forgot-password">
-              Forgot password?
-            </a>
-          </div>
+          {!isRegisterMode && (
+            <div className="form-options">
+              <label className="remember-me">
+                <input type="checkbox" />
+                Remember me
+              </label>
+              <a href="#" className="forgot-password">
+                Forgot password?
+              </a>
+            </div>
+          )}
 
           <button type="submit" className="login-btn">
-            Se Connecter
+            {isRegisterMode ? "Créer un compte" : "Se Connecter"}
           </button>
+
+          <div className="register-toggle">
+            {isRegisterMode ? (
+              <p>
+                Vous avez déjà un compte ?{" "}
+                <button
+                  type="button"
+                  className="toggle-link"
+                  onClick={() => {
+                    setIsRegisterMode(false);
+                    setPrenom("");
+                  }}
+                >
+                  Se connecter
+                </button>
+              </p>
+            ) : (
+              <p>
+                Vous n'avez pas de compte ?{" "}
+                <button
+                  type="button"
+                  className="toggle-link"
+                  onClick={() => setIsRegisterMode(true)}
+                >
+                  Créer un compte
+                </button>
+              </p>
+            )}
+          </div>
         </form>
       </div>
     </div>

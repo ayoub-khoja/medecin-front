@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import { useAuth } from './hooks/useAuth';
 import { ROUTES } from './navigation/navigationConfig';
+import ReturnIcon from './icons/return';
 
 
 const Dashboard: React.FC = () => {
@@ -35,6 +36,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard-container">
+      {/* Flèche de retour */}
+      <div className="dashboard-return-icon" onClick={() => navigate(-1)}>
+        <ReturnIcon />
+      </div>
+      
       {/* Header avec logos */}
       <header className="dashboard-header">
         <div className="header-left">

@@ -1,4 +1,4 @@
-/* Modal overlay */
+/* Modal principal */
 .medical-report-overlay {
   position: fixed;
   top: 0;
@@ -13,23 +13,23 @@
   padding: 20px;
 }
 
-/* Modal principal */
 .medical-report-modal {
   background: white;
   border-radius: 12px;
-  max-width: 900px;
-  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 90vw;
   max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 1200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 /* En-tête du modal */
 .medical-report-header {
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
   color: white;
-  padding: 20px;
-  border-radius: 12px 12px 0 0;
+  padding: 20px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,19 +37,21 @@
 
 .medical-report-header h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
+  text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .close-button {
   background: none;
   border: none;
   color: white;
-  font-size: 28px;
+  font-size: 2rem;
   cursor: pointer;
   padding: 0;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+    height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,209 +60,605 @@
 }
 
 .close-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Contenu du rapport */
+/* Contenu principal */
 .medical-report-content {
+  flex: 1;
+    overflow-y: auto;
   padding: 30px;
-}
-
-/* En-tête du rapport */
-.report-header {
-  border-bottom: 2px solid #e5e7eb;
-  padding-bottom: 20px;
-  margin-bottom: 30px;
-}
-
-.report-info p {
-  margin: 8px 0;
-  font-size: 16px;
-  color: #374151;
-}
-
-/* Sections du rapport */
-.report-section {
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #f9fafb;
-  border-radius: 8px;
-  border-left: 4px solid #3b82f6;
-}
-
-.report-section h3 {
-  color: #1e3a8a;
-  margin: 0 0 15px 0;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.report-section h4 {
-  color: #374151;
-  margin: 15px 0 10px 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* Informations patient */
-.patient-info p {
-  margin: 8px 0;
-  font-size: 15px;
-  color: #374151;
-}
-
-/* Résultats mammographie et échographie */
-.mammo-results p,
-.echo-results p {
-  margin: 8px 0;
-  font-size: 15px;
-  color: #374151;
-}
-
-/* Détails des masses */
-.masses-details {
-  margin: 15px 0;
-}
-
-.masse-item {
   background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
 }
 
-.masse-item p {
-  margin: 0 0 10px 0;
+/* En-tête du rapport avec design JFR/SIAD exact */
+.report-header {
+  background: white;
+    border-radius: 12px;
+    padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.header-left .logo-section,
+.header-right .logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.logo-year {
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #1e40af;
+    margin-top: -5px;
 }
 
-.masse-item ul {
+.logo-siad {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.institution {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.header-center {
+  text-align: center;
+}
+
+.header-center h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+/* Informations médecin et institution exactes */
+.doctor-affiliation {
+  background: white;
+  border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border-left: 4px solid #3b82f6;
+}
+
+.doctor-affiliation h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e40af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .doctor-affiliation p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #374151;
+    font-weight: 500;
+  }
+  
+  /* Renseignements cliniques avec fond vert exact */
+  .clinical-info-section {
+    background: #ecfdf5;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #10b981;
+  }
+  
+  .clinical-info-section h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.4rem;
+  font-weight: 600;
+  color: #065f46;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #10b981;
+    padding-bottom: 10px;
+}
+
+.clinical-details ul {
   margin: 0;
   padding-left: 20px;
 }
 
-.masse-item li {
-  margin: 5px 0;
-  font-size: 14px;
+.clinical-details li {
+  margin: 8px 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #065f46;
+}
+
+/* Section RÉSULTATS avec barre bleue exacte */
+.results-section {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.results-header {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  padding: 15px 25px;
+}
+
+.results-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.results-content {
+  padding: 25px;
+}
+
+.result-subsection {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.result-subsection:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.result-subsection h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-item {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.result-item p {
+  margin: 8px 0;
+  font-size: 1rem;
+  line-height: 1.6;
   color: #374151;
 }
 
-/* Résultats ACR */
-.acr-results {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  border: 2px solid #3b82f6;
-}
-
-.acr-score p {
-  font-size: 18px;
+.result-item strong {
+  color: #1e40af;
   font-weight: 600;
-  color: #1e3a8a;
-  margin: 10px 0;
 }
 
-.conclusion-ia,
-.conduite-atenir {
-  margin: 15px 0;
+.masses-details {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+
+.masse-detail {
+  margin-bottom: 15px;
   padding: 15px;
-  background: #f0f9ff;
-  border-radius: 6px;
-  border-left: 3px solid #0ea5e9;
+  background: white;
+  border-radius: 8px;
+    border-left: 3px solid #3b82f6;
+  }
+  
+  .masse-detail p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+  }
+  
+  /* Schéma de localisation avec design exact */
+  .localisation-schema {
+    display: flex;
+    justify-content: center;
+  padding: 20px;
 }
 
-.conclusion-ia h4,
-.conduite-atenir h4 {
-  margin: 0 0 10px 0;
-  color: #0c4a6e;
-  font-size: 16px;
+.schema-container {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e2e8f0;
+  max-width: 500px;
 }
 
-.conclusion-ia p,
-.conduite-atenir p {
+.breast-schema-display {
+  text-align: center;
+}
+
+.breast-schema-display h4 {
+  margin: 0 0 20px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #3b82f6;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  }
+  
+  .breast-outline {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 3px solid #3b82f6;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .clock-markers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .marker-12 {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #3b82f6;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .marker-3 {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #3b82f6;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.marker-6 {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b82f6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.marker-9 {
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #3b82f6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.nipple-center {
+  width: 20px;
+  height: 20px;
+  background: #6b7280;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.schema-description {
   margin: 0;
-  font-size: 15px;
-  color: #0c4a6e;
+  font-size: 0.9rem;
+    color: #6b7280;
+    font-style: italic;
   line-height: 1.5;
 }
 
-/* Signature */
+/* Signature et cachet exacts */
 .report-signature {
+  background: white;
+    border-radius: 12px;
+    padding: 30px;
   margin-top: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e2e8f0;
+  }
+  
+  .signature-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .doctor-info {
+    text-align: left;
+  }
+  
+  .doctor-info p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #374151;
+  }
+  
+  .doctor-name {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: #1e40af !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 15px 0 10px 0 !important;
+  }
+  
+  .doctor-title {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    margin: 10px 0 5px 0 !important;
+  }
+  
+  .doctor-credentials {
+    font-size: 0.9rem !important;
+    color: #6b7280 !important;
+    font-style: italic;
+  }
+  
+  .signature-area {
+    text-align: center;
+  }
+  
+  .signature-line {
+    width: 200px;
+    height: 2px;
+    background: #374151;
+    margin: 0 auto 10px;
+    border-radius: 1px;
+  }
+  
+  .signature-text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .stamp-area {
+    text-align: center;
+  }
+  
+  .medical-stamp {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #ef4444;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  }
+  
+  .stamp-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .stamp-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ef4444;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .report-footer {
+    text-align: center;
   padding-top: 20px;
-  border-top: 2px solid #e5e7eb;
-  text-align: right;
+  border-top: 1px solid #e2e8f0;
 }
 
-.report-signature p {
-  margin: 8px 0;
-  font-size: 14px;
+.report-footer p {
+  margin: 5px 0;
+  font-size: 0.9rem;
   color: #6b7280;
 }
 
-/* Pied de page du modal */
+/* Pied de page */
 .medical-report-footer {
-  padding: 20px;
-  border-top: 1px solid #e5e7eb;
+  background: #f8fafc;
+    padding: 20px 30px;
   display: flex;
   justify-content: space-between;
-  gap: 15px;
-}
-
-.print-button,
-.close-button-secondary {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
+  align-items: center;
+    border-top: 1px solid #e2e8f0;
 }
 
 .print-button {
-  background: #10b981;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .print-button:hover {
-  background: #059669;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
 }
 
 .close-button-secondary {
   background: #6b7280;
   color: white;
+  border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .close-button-secondary:hover {
-  background: #4b5563;
+  background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .medical-report-modal {
-    margin: 10px;
+    width: 95vw;
+  }
+
+  .report-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .header-left .logo-section {
+    justify-content: center;
+  }
+
+  .report-info {
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .medical-report-content {
+      padding: 20px;
+    }
+  
+    .report-header {
+      padding: 20px;
+    }
+  
+    .header-center h1 {
+      font-size: 1.8rem;
+    }
+  
+    .signature-section {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      text-align: center;
+    }
+  
+    .medical-report-footer {
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .medical-report-overlay {
+      padding: 10px;
+    }
+  .medical-report-modal {
+    width: 100vw;
     max-height: 95vh;
   }
   
   .medical-report-content {
-    padding: 20px;
-  }
-  
-  .report-section {
     padding: 15px;
   }
   
-  .medical-report-footer {
-    flex-direction: column;
+    .report-header {
+    padding: 15px;
   }
   
-  .print-button,
-  .close-button-secondary {
-    width: 100%;
+    .header-center h1 {
+      font-size: 1.5rem;
+  }
+  
+    .logo {
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+    }
+  
+    .breast-outline {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .medical-stamp {
+      width: 100px;
+      height: 100px;
   }
 }
 
@@ -268,12 +666,16 @@
 @media print {
   .medical-report-overlay {
     position: static;
-    background: none;
+    background: white;
+      padding: 0;
   }
   
   .medical-report-modal {
     box-shadow: none;
-    border: 1px solid #000;
+    border: none;
+      max-width: none;
+      max-height: none;
+      width: 100%;
   }
   
   .medical-report-header,
@@ -282,11 +684,31 @@
   }
   
   .medical-report-content {
-    padding: 0;
+    padding: 20px;
+      background: white;
   }
   
-  .report-section {
+    .report-header,
+    .results-section,
+    .report-signature {
     break-inside: avoid;
     margin-bottom: 20px;
+    box-shadow: none;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .breast-outline {
+      border: 2px solid #3b82f6;
+    }
+    
+    .acr-score,
+    .acr-type {
+      box-shadow: none;
+      border: 1px solid #000;
+    }
+    
+    .medical-stamp {
+      border: 2px solid #000;
+      box-shadow: none;
   }
 } 

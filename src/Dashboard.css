@@ -23,6 +23,37 @@ html, body {
   flex-direction: column;
   margin: 0;
   padding: 0;
+  position: relative;
+}
+
+/* Flèche de retour */
+.dashboard-return-icon {
+  position: absolute;
+  top: calc(1rem + 160px);
+  left: 3rem;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-return-icon:hover {
+  transform: translateX(-3px);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-return-icon svg {
+  width: 20px;
+  height: 18px;
 }
 
 /* Header */
@@ -30,7 +61,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 3rem;
+  padding: 1rem 3rem;
   background-color: #ffffff;
   border-bottom: 1px solid #f0f0f0;
   position: relative;
@@ -138,7 +169,7 @@ html, body {
 /* Section de bienvenue */
 .welcome-section {
   text-align: center;
-  padding: 3rem 0;
+  padding: 1rem 0;
 }
 
 .welcome-title {
@@ -182,7 +213,7 @@ html, body {
 
 .card-image {
   width: 100%;
-  height: 250px;
+  height: 150px;
   overflow: hidden;
 }
 
@@ -288,7 +319,7 @@ html, body {
 
 /* Footer avec bouton */
 .dashboard-footer {
-  padding: 3rem;
+  padding: 0.5rem 3rem;
   text-align: center;
 }
 
@@ -337,7 +368,7 @@ html, body {
 /* Grands écrans (1400px et plus) */
 @media (min-width: 1400px) {
   .dashboard-header {
-    padding: 3rem 4rem;
+    padding: 1.5rem 4rem;
   }
   
   .main-title {
@@ -353,11 +384,20 @@ html, body {
   }
   
   .card-image {
-    height: 300px;
+    height: 180px;
   }
   
   .card-text {
     font-size: 1.4rem;
+  }
+  
+  .dashboard-footer {
+    padding: 0.5rem 4rem;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(1.5rem + 170px);
+    left: 4rem;
   }
   
   .suivant-btn {
@@ -369,7 +409,7 @@ html, body {
 /* Écrans moyens (992px à 1399px) */
 @media (min-width: 992px) and (max-width: 1399px) {
   .dashboard-header {
-    padding: 2rem 3rem;
+    padding: 1rem 3rem;
   }
   
   .main-title {
@@ -385,18 +425,27 @@ html, body {
   }
   
   .card-image {
-    height: 250px;
+    height: 150px;
   }
   
   .card-text {
     font-size: 1.2rem;
+  }
+  
+  .dashboard-footer {
+    padding: 0.5rem 3rem;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(1rem + 160px);
+    left: 3rem;
   }
 }
 
 /* Tablettes (768px à 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
   .dashboard-header {
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
     flex-direction: column;
     gap: 1.5rem;
   }
@@ -418,6 +467,10 @@ html, body {
     font-size: 2rem;
   }
   
+  .welcome-section {
+    padding: 0.5rem 0;
+  }
+  
   .dashboard-main {
     padding: 2rem;
   }
@@ -428,11 +481,20 @@ html, body {
   }
   
   .card-image {
-    height: 200px;
+    height: 120px;
   }
   
   .card-text {
     font-size: 1.1rem;
+  }
+  
+  .dashboard-footer {
+    padding: 0.5rem 2rem;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(1rem + 180px);
+    left: 2rem;
   }
   
   .suivant-btn {
@@ -475,8 +537,33 @@ html, body {
     padding: 0 1rem;
   }
   
+  .welcome-section {
+    padding: 0.5rem 0;
+  }
+  
   .dashboard-main {
     padding: 1rem;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(1rem + 110px);
+    left: 1rem;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .dashboard-return-icon svg {
+    width: 18px;
+    height: 16px;
+  }
+  
+  .dashboard-footer {
+    padding: 0.5rem 1rem;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(1rem + 120px);
+    left: 1rem;
   }
   
   .cards-container {
@@ -485,7 +572,7 @@ html, body {
   }
   
   .card-image {
-    height: 180px;
+    height: 110px;
   }
   
   .card-content {
@@ -497,7 +584,12 @@ html, body {
   }
   
   .dashboard-footer {
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(1rem + 100px);
+    left: 1rem;
   }
   
   .suivant-btn {
@@ -535,8 +627,24 @@ html, body {
     font-size: 1.5rem;
   }
   
+  .welcome-section {
+    padding: 0.5rem 0;
+  }
+  
   .card-image {
-    height: 150px;
+    height: 90px;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(0.8rem + 90px);
+    left: 0.8rem;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .dashboard-return-icon svg {
+    width: 16px;
+    height: 14px;
   }
   
   .card-content {
@@ -545,6 +653,15 @@ html, body {
   
   .card-text {
     font-size: 0.9rem;
+  }
+  
+  .dashboard-footer {
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .dashboard-return-icon {
+    top: calc(0.8rem + 110px);
+    left: 0.8rem;
   }
   
   .suivant-btn {

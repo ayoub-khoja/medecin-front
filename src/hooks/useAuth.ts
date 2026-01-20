@@ -68,6 +68,29 @@ export const useAuth = () => {
     navigate("/");
   };
 
+  const register = async (nom: string, prenom: string, password: string) => {
+    try {
+      const response = await fetch("http://localhost:9000/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nom, prenom, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData || "Erreur lors de la création du compte !");
+      }
+
+      const data = await response.json();
+      
+      return { success: true, data };
+    } catch (error) {
+      return { success: false, error: error as Error };
+    }
+  };
+
   const checkAuth = () => {
     const token = localStorage.getItem('authToken');
     if (!token) {
@@ -83,6 +106,7 @@ export const useAuth = () => {
     isAuthenticated,
     loading,
     login,
+    register,
     logout,
     checkAuth,
   };

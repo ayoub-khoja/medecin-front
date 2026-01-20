@@ -21,7 +21,11 @@ const FormOne: React.FC = () => {
     massNumber,
     setMassNumber,
     localisations,
+    distancesCentre,
+    seins,
     handleLocalisationChange,
+    handleDistanceCentreChange,
+    handleSeinChange,
     selected,
     handleCheckboxChange,
     handleMassesDataChange,
@@ -55,10 +59,22 @@ const FormOne: React.FC = () => {
   } = useFormOneLogic(navigate);
 
   return (
-    <div className="mammographie-container">
-      <ReturnIcon onClick={() => navigate(-1)} />
-      <Stepper steps={steps} currentStep={0} />
-      <div className="header">MAMOGRAPHIE</div>
+    <div className="form-wrapper">
+      <div className="form-image-section">
+        <img 
+          src="/med.jpg" 
+          alt="Medical illustration" 
+          className="form-side-image"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "/choix2.png";
+          }}
+        />
+      </div>
+      <div className="mammographie-container">
+        <ReturnIcon onClick={() => navigate(-1)} />
+        <Stepper steps={steps} currentStep={0} />
+        <div className="header">MAMOGRAPHIE</div>
 
       <DensiteSection
         selected={selected}
@@ -70,7 +86,11 @@ const FormOne: React.FC = () => {
         massNumber={massNumber}
         setMassNumber={setMassNumber}
         localisations={localisations}
+        distancesCentre={distancesCentre}
+        seins={seins}
         handleLocalisationChange={handleLocalisationChange}
+        handleDistanceCentreChange={handleDistanceCentreChange}
+        handleSeinChange={handleSeinChange}
         hoveredOption={hoveredOption}
         setHoveredOption={setHoveredOption}
         formes={formes}
@@ -115,6 +135,7 @@ const FormOne: React.FC = () => {
       />
 
       <NextButton handleNextClick={handleNextClick} />
+      </div>
     </div>
   );
 };

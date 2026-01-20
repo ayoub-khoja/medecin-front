@@ -64,36 +64,24 @@ const FormThree: React.FC = () => {
   }, [loadingIA, analysisProgress]);
 
   return (
-    <div className="form-three-container">
-      {/* Section image de gauche */}
-      <div className="conclusion-image-section">
-        <div className="conclusion-image-container">
-          <img
-            src="/image-conclusion.png"
-            alt="Conclusion médicale"
-            className="conclusion-image"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const overlay = target.parentElement?.querySelector('.image-overlay') as HTMLElement;
-              if (overlay) {
-                overlay.style.display = 'flex';
-              }
-            }}
-          />
-          <div className="image-overlay" style={{ display: 'none' }}>
-            <div className="image-title">Conclusion IA</div>
-            <div className="image-subtitle">Analyse automatique des résultats médicaux</div>
-          </div>
-        </div>
+    <div className="form-wrapper">
+      <div className="form-image-section">
+        <img 
+          src="/image-conclusion.png" 
+          alt="Conclusion médicale" 
+          className="form-side-image"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "/med.jpg";
+          }}
+        />
       </div>
-
-      {/* Section contenu de droite */}
-      <div className="form-three-content-section">
-        <div className="form-three-header">
-          <ReturnIcon onClick={() => navigate(-1)} />
-          <Stepper steps={steps} currentStep={2} />
-        </div>
+      <div className="form-three-container">
+        <div className="form-three-content-section">
+          <div className="form-three-header">
+            <ReturnIcon onClick={() => navigate(-1)} />
+            <Stepper steps={steps} currentStep={2} />
+          </div>
         
         <div className="form-three-content">
           <div className="form-three-title-section">
@@ -164,6 +152,7 @@ const FormThree: React.FC = () => {
             scanData={scanData}
           />
         )}
+        </div>
       </div>
     </div>
   );

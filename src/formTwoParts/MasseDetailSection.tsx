@@ -1,8 +1,11 @@
 import React from "react";
+import BreastSchema from "../components/BreastSchema";
 
 interface Props {
   index: number;
   localisation: string;
+  distanceCentre: string;
+  sein: "gauche" | "droite";
   mesure: string;
   forme: string;
   contour: string;
@@ -11,6 +14,8 @@ interface Props {
   comportement: string;
   calcification: string;
   onLocalisationChange: (index: number, value: string) => void;
+  onDistanceCentreChange: (index: number, value: string) => void;
+  onSeinChange: (index: number, value: "gauche" | "droite") => void;
   onMesureChange: (index: number, value: string) => void;
   onMassesDataChange: (
     index: number,
@@ -22,6 +27,8 @@ interface Props {
 const MasseDetailSection: React.FC<Props> = ({
   index,
   localisation,
+  distanceCentre,
+  sein,
   mesure,
   forme,
   contour,
@@ -30,6 +37,8 @@ const MasseDetailSection: React.FC<Props> = ({
   comportement,
   calcification,
   onLocalisationChange,
+  onDistanceCentreChange,
+  onSeinChange,
   onMesureChange,
   onMassesDataChange,
 }) => {
@@ -40,8 +49,12 @@ const MasseDetailSection: React.FC<Props> = ({
     onMassesDataChange(index, type, value);
   };
 
-  const handleLocalisationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onLocalisationChange(index, e.target.value);
+  const handleLocalisationChange = (value: string) => {
+    onLocalisationChange(index, value);
+  };
+
+  const handleDistanceCentreChange = (value: string) => {
+    onDistanceCentreChange(index, value);
   };
 
   const handleMesureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,22 +63,18 @@ const MasseDetailSection: React.FC<Props> = ({
 
   return (
     <div className="additional-section border rounded-lg mt-4 p-4">
-      {/* Localisation */}
-      <label className="form-label">
-        Localisation {index + 1} 
-        <span className="text-red-500 ml-1">*</span>
-      </label>
-      <input
-        type="text"
-        value={localisation}
-        onChange={handleLocalisationChange}
-        className="form-input"
-        placeholder="Ex: Quadrant supérieur externe"
-        required
+      {/* Schéma mammaire avec localisation */}
+      <BreastSchema
+        localisation={localisation}
+        distanceCentre={distanceCentre}
+        sein={sein}
+        onLocalisationChange={handleLocalisationChange}
+        onDistanceCentreChange={handleDistanceCentreChange}
+        onSeinChange={onSeinChange}
       />
 
       {/* Mesure */}
-      <label className="form-label mt-2">Mesure {index + 1} (mm)</label>
+      <label className="form-label mt-4">Mesure {index + 1} (mm)</label>
       <input
         type="text"
         value={mesure}

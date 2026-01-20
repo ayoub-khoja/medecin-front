@@ -9,6 +9,8 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
 
   const [nombreMasse, setNombreMasse] = useState<number | "">("");
   const [localisations, setLocalisations] = useState<string[]>([]);
+  const [distancesCentre, setDistancesCentre] = useState<string[]>([]);
+  const [seins, setSeins] = useState<("gauche" | "droite")[]>([]);
   const [mesures, setMesures] = useState<string[]>([]);
   const [formes, setFormes] = useState<string[]>([]);
   const [contours, setContours] = useState<string[]>([]);
@@ -38,6 +40,24 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
   // Localisation d'une masse
   const handleLocalisationChange = (index: number, value: string) => {
     setLocalisations((prev) => {
+      const arr = [...prev];
+      arr[index] = value;
+      return arr;
+    });
+  };
+
+  // Distance du centre d'une masse
+  const handleDistanceCentreChange = (index: number, value: string) => {
+    setDistancesCentre((prev) => {
+      const arr = [...prev];
+      arr[index] = value;
+      return arr;
+    });
+  };
+
+  // Sein d'une masse
+  const handleSeinChange = (index: number, value: "gauche" | "droite") => {
+    setSeins((prev) => {
       const arr = [...prev];
       arr[index] = value;
       return arr;
@@ -108,6 +128,8 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
     // ✅ CORRECTION : Toujours créer le tableau des masses échographiques
     const massesEchographie = localisations.map((localisation, index) => ({
       localisation: localisation || "",
+      distanceCentre: distancesCentre[index] || "",
+      sein: seins[index] || "gauche",
       mesure: mesures[index] || "",
       forme: formes[index] || "",
       contours: contours[index] || "",
@@ -186,6 +208,8 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
     steps,
     nombreMasse,
     localisations,
+    distancesCentre,
+    seins,
     mesures,
     formes,
     contours,
@@ -201,6 +225,8 @@ export const useFormTwoLogic = (navigate: ReturnType<typeof useNavigate>) => {
     handleEchostructureChange,
     handleNombreMasseChange,
     handleLocalisationChange,
+    handleDistanceCentreChange,
+    handleSeinChange,
     handleMesureChange,
     handleMassesDataChange,
     handleSignesAssociesChange,
