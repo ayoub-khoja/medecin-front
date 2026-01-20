@@ -70,7 +70,7 @@ const MasseDetailSection: React.FC<Props> = ({
         sein={sein}
         onLocalisationChange={handleLocalisationChange}
         onDistanceCentreChange={handleDistanceCentreChange}
-        onSeinChange={onSeinChange}
+        onSeinChange={(value) => onSeinChange(index, value)}
       />
 
       {/* Mesure */}

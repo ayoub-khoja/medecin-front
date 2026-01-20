@@ -143,7 +143,7 @@ const MedicalReport: React.FC<MedicalReportProps> = ({ isOpen, onClose, scanData
               <div className="result-subsection">
                 <h4>2/ Masses détectées</h4>
                 {(scanData.mammographie?.masses || scanData.echographie?.masses) && 
-                 (scanData.mammographie?.masses?.length > 0 || scanData.echographie?.masses?.length > 0) ? (
+                 ((scanData.mammographie?.masses?.length ?? 0) > 0 || (scanData.echographie?.masses?.length ?? 0) > 0) ? (
                   <div className="result-item">
                     <p>✓ Nombre de masses: <strong>{(scanData.mammographie?.masses?.length || 0) + (scanData.echographie?.masses?.length || 0)}</strong></p>
                     <div className="masses-details">
@@ -247,7 +247,7 @@ const MedicalReport: React.FC<MedicalReportProps> = ({ isOpen, onClose, scanData
 
           {/* Schéma de localisation avec design exact */}
           {(scanData.mammographie?.masses || scanData.echographie?.masses) && 
-           (scanData.mammographie?.masses?.length > 0 || scanData.echographie?.masses?.length > 0) && (
+           ((scanData.mammographie?.masses?.length ?? 0) > 0 || (scanData.echographie?.masses?.length ?? 0) > 0) && (
             <div className="localisation-schema">
               <div className="schema-container">
                 <div className="breast-schema-display">
