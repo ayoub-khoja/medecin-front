@@ -263,6 +263,24 @@
   border: 1px solid #e5e7eb;
 }
 
+/* Style pour la justification dans le compte rendu */
+.justification-item {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-left: 4px solid #3b82f6;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.justification-item .justification-text {
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin: 0;
+  white-space: pre-wrap;
+  text-align: justify;
+}
+
 .result-item p {
   margin: 8px 0;
   font-size: 1rem;

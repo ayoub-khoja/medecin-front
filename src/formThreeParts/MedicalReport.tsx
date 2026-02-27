@@ -48,6 +48,7 @@ interface MedicalReportProps {
       acrScore?: string;
       acrType?: string;
       conclusionIA?: string;
+      justificationIA?: string; // ✅ NOUVEAU : Justification IA
       conduiteATenir?: string;
     };
   };
@@ -231,9 +232,24 @@ const MedicalReport: React.FC<MedicalReportProps> = ({ isOpen, onClose, scanData
                 <div className="result-subsection">
                   <h4>8/ Conclusion Intelligence Artificielle</h4>
                   <div className="result-item">
-                    <p>✓ {scanData.resultats.conclusionIA}</p>
+                    {scanData.resultats.conclusionIA ? (
+                      <p>✓ {scanData.resultats.conclusionIA}</p>
+                    ) : (
+                      <p style={{ color: '#ef4444', fontStyle: 'italic' }}>
+                        ⚠️ Conclusion IA non disponible. Veuillez générer l'analyse IA.
+                      </p>
+                    )}
                   </div>
                 </div>
+
+                {scanData.resultats.justificationIA && (
+                  <div className="result-subsection">
+                    <h4>8.1/ Justification du Score ACR</h4>
+                    <div className="result-item justification-item">
+                      <p className="justification-text">✓ {scanData.resultats.justificationIA}</p>
+                    </div>
+                  </div>
+                )}
 
                 <div className="result-subsection">
                   <h4>9/ Conduite à tenir</h4>

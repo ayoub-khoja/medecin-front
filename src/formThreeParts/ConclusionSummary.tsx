@@ -2,6 +2,7 @@ import React from "react";
 
 interface ConclusionSummaryProps {
   conclusionIA: string;
+  justificationIA?: string; // ✅ NOUVEAU : Justification IA
   acrScore: string;
   acrType?: string;
   scanData?: any;
@@ -9,6 +10,7 @@ interface ConclusionSummaryProps {
 
 const ConclusionSummary: React.FC<ConclusionSummaryProps> = ({
   conclusionIA,
+  justificationIA, // ✅ NOUVEAU : Justification IA
   acrScore,
   acrType,
   scanData
@@ -120,6 +122,19 @@ const ConclusionSummary: React.FC<ConclusionSummaryProps> = ({
           </div>
         )}
       </div>
+
+      {/* Justification du score ACR */}
+      {justificationIA && (
+        <div className="conclusion-detail justification-section">
+          <div className="detail-header">
+            <div className="detail-icon">🔍</div>
+            <h4 className="detail-title">Pourquoi ce résultat ?</h4>
+          </div>
+          <div className="detail-content justification-content">
+            <p className="justification-text">{justificationIA}</p>
+          </div>
+        </div>
+      )}
 
       {/* Conclusion détaillée */}
       {conclusionIA && (

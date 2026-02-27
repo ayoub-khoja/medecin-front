@@ -16,6 +16,7 @@ const FormThree: React.FC = () => {
     steps,
     conclusionIA,
     conduiteIA,
+    justificationIA, // ✅ NOUVEAU : Justification IA
     acrType,
     acrScore,
     loadingIA,
@@ -114,6 +115,7 @@ const FormThree: React.FC = () => {
               {/* Résumé de la conclusion */}
               <ConclusionSummary 
                 conclusionIA={conclusionIA}
+                justificationIA={justificationIA} // ✅ NOUVEAU : Passer la justification
                 acrScore={acrScore || ""}
                 acrType={acrType}
                 scanData={scanData}

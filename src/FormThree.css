@@ -830,6 +830,28 @@ body {
     margin: 0;
 }
 
+/* Section de justification */
+.justification-section {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-left: 4px solid #3b82f6;
+  margin-top: 1.5rem;
+}
+
+.justification-content {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1.25rem;
+  border-radius: 8px;
+  margin-top: 0.75rem;
+}
+
+.justification-text {
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
 .detail-content p {
   margin: 0;
   font-size: 16px;
