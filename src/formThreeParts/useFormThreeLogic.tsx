@@ -9,6 +9,8 @@ export const useFormThreeLogic = (navigate: ReturnType<typeof useNavigate>) => {
 
   const [conclusionIA, setConclusionIA] = useState<string>("");
   const [conduiteIA, setConduiteIA] = useState<string>("");
+  // ✅ NOUVEAU : justification détaillée de l'IA (optionnelle)
+  const [justificationIA, setJustificationIA] = useState<string>("");
   const [acrType, setAcrType] = useState<string>("");
   const [acrScore, setAcrScore] = useState<string>(""); // ✅ NOUVEAU : Score ACR
   const [loadingIA, setLoadingIA] = useState<boolean>(true);
@@ -82,6 +84,13 @@ export const useFormThreeLogic = (navigate: ReturnType<typeof useNavigate>) => {
           
           setConclusionIA(scan.conclusionIA || "");
           setConduiteIA(scan.conduiteATenir || "");
+          // On essaye de récupérer une justification si le backend en fournit une
+          // (par exemple `justificationIA` ou `justification`).
+          setJustificationIA(
+            scan.justificationIA ||
+            scan.justification ||
+            ""
+          );
           setAcrType(scan.acrType || "");
           setAcrScore(scan.acrScore || ""); // ✅ NOUVEAU : Récupérer le score ACR
           
@@ -120,6 +129,7 @@ export const useFormThreeLogic = (navigate: ReturnType<typeof useNavigate>) => {
     steps,
     conclusionIA,
     conduiteIA,
+    justificationIA,
     acrType,
     acrScore, // ✅ NOUVEAU : Retourner le score ACR
     loadingIA,
