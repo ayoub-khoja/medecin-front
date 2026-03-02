@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: #f8f9fa;
+}
+.patient-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f7f7f7;
+  margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.patient-image-section {
+  width: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+}
+
+.patient-image {
+  width: 100%;
+    max-width: 100%;
+    height: 100vh;
+  margin-top: 0px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.patient-form-section {
+  width: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  margin: 0;
+}
+
+.patient-form {
+  width: 100%;
+  max-width: 600px;
+  margin-left: 0;
+
+  /* ✅ Cadre ajouté */
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 132px; /* ✅ Descend le formulaire vers le bas */
+}
+
+/* ✅ Conteneur pour aligner le bouton et le titre */
+.patient-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.patient-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 300px;
+  white-space: nowrap;
+  color: #333;
+}
+
+.patient-input {
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 1.3rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.patient-input:focus {
+  border-color: #40e0d0;
+  outline: none;
+}
+
+.patient-input.renseignements {
+  height: 150px;
+  resize: vertical;
+}
+
+.patient-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.patient-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.patient-forgot {
+  color: #40e0d0;
+  text-decoration: none;
+}
+
+.patient-forgot:hover {
+  text-decoration: underline;
+}
+
+.patient-btn {
+  width: 100%;
+  background-color: #40e0d0;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.patient-btn:hover {
+  background-color: #40e0d0;
+}
+
+.patient-back-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #6366f1;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.patient-back-btn:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .patient-wrapper {
+    flex-direction: column;
+  }
+
+  .patient-image-section {
+    width: 100%;
+    height: 300px;
+  }
+
+  .patient-image {
+    height: 300px;
+    border-radius: 0;
+  }
+
+  .patient-form-section {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .patient-form {
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .patient-form-section {
+    padding: 1.5rem;
+  }
+
+  .patient-form {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .patient-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .patient-form-section {
+    padding: 1rem;
+  }
+
+  .patient-form {
+    padding: 1rem;
+  }
+
+  .patient-title {
+    font-size: 1.3rem;
+  }
+}

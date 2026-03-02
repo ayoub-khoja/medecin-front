@@ -1,0 +1,158 @@
+/* ===== Background général ===== */
+body {
+  background-color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.form-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #ffffff;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.form-image-section {
+  width: 50%;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.form-side-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* ===== Container principal ===== */
+.form-two-container {
+  width: 50%;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to bottom, #e6f7ff, #ccf2ff);
+  border-radius: 0;
+  padding: 30px 40px;
+  box-shadow: none;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ===== Titre principal ===== */
+.form-two-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #003366;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+/* ===== Sous-titre ===== */
+.form-two-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #005580;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* ===== Sections générales ===== */
+.echostructure-section,
+.form-input-section,
+.additional-section,
+.form-checkbox-section {
+  margin-bottom: 20px;
+}
+
+/* ===== Label ===== */
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* ===== Inputs ===== */
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid #0099cc;
+  background-color: #e6f7ff;
+  color: #00334d;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #00ccff;
+}
+
+/* ===== Checkbox ===== */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #005580;
+  background-color: #ffffff;
+  border: 2px solid #00ccff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  margin-right: 10px;
+}
+
+.checkbox-label:hover {
+  background-color: #d1f3ff;
+}
+
+/* ===== Submit button (si besoin) ===== */
+.form-submit-btn {
+  width: 100%;
+  background-color: #0099cc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit-btn:hover {
+  background-color: #007aa3;
+}
+.input-field {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+}
